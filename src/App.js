@@ -7,11 +7,14 @@ import Map from "./Map";
 function App() {
     const [countries, setCountries] = useState([]);
     const [country, setCountry] = useState("worldwide");
+    const [countryData, setCountryData] = useState({});
 
-    const onCountryChange = async (event) => {
-        const countryCode = event.target.value;
-        setCountry(countryCode);
-    };
+    useEffect(() => {
+        const baseUrl = "https://disease.sh/v3/covid-19/all";
+        fetch(baseUrl)
+            .then((response) => response.json())
+            .then((data) => setCountryData(data));
+    }, []);
 
     useEffect(() => {
         const url = "https://disease.sh/v3/covid-19/countries";
@@ -21,13 +24,30 @@ function App() {
                 .then((data) => {
                     const countries = data.map((country) => ({
                         name: country.country,
-                        value: country.countryInfo.iso2,
+                        value: country.countryInfo.iso3,
+                        flag: country.countryInfo.flag,
                     }));
                     setCountries(countries);
                 });
         };
         getCountriesData();
     }, []);
+
+    const onCountryChange = async (event) => {
+        const countryCode = event.target.value;
+
+        const url =
+            countryCode === "worldwide"
+                ? "https://disease.sh/v3/covid-19/all"
+                : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+        await fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                setCountry(countryCode);
+                setCountryData(data);
+            });
+    };
+    //console.log(country, countryData);
 
     return (
         <div className="app">
@@ -41,9 +61,20 @@ function App() {
                             value={country}
                             onChange={onCountryChange}
                         >
-                            <MenuItem value="worldwide">Worldwide</MenuItem>
+                            <MenuItem key="Worldwide" value="worldwide">
+                                🌎 Worldwide
+                            </MenuItem>
                             {countries.map((country) => (
-                                <MenuItem value={country.value}>
+                                <MenuItem
+                                    key={country.name}
+                                    value={country.value}
+                                >
+                                    <img
+                                        className="country__image"
+                                        src={country.flag}
+                                        alt=""
+                                        srcset=""
+                                    />
                                     {country.name}
                                 </MenuItem>
                             ))}
@@ -53,9 +84,21 @@ function App() {
 
                 {/* InfoBox */}
                 <div className="app__stats">
-                    <InfoBox title="Corona Cases" cases={1234} total={21324} />
-                    <InfoBox title="Recovered" cases={1234} total={21324} />
-                    <InfoBox title="Deaths" cases={1234} total={21324} />
+                    <InfoBox
+                        title="Corona Cases"
+                        cases={countryData.todayCases}
+                        total={countryData.cases}
+                    />
+                    <InfoBox
+                        title="Recovered"
+                        cases={countryData.todayRecovered}
+                        total={countryData.recovered}
+                    />
+                    <InfoBox
+                        title="Deaths"
+                        cases={countryData.todayDeaths}
+                        total={countryData.deaths}
+                    />
                 </div>
 
                 {/* Map */}
