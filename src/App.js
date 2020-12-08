@@ -2,6 +2,7 @@ import { Card, FormControl, MenuItem, Select } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
+import LineGraph from "./LineGraph";
 import Map from "./Map";
 import Table from "./Table";
 import { sortData } from "./util";
@@ -111,11 +112,11 @@ function App() {
             </div>
             <Card className="app__right">
                 {/* Table */}
-                <h1>New cases by country</h1>
+                <h2>Total cases by country</h2>
                 <Table allData={tableData} />
                 {/* Graph */}
-                <h1>New cases graph</h1>
-                {/* <LineGraph /> */}
+                <h2>New cases by last 120 days</h2>
+                <LineGraph />
             </Card>
         </div>
     );
