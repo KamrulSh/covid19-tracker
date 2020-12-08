@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table";
+import { sortData } from "./util";
 
 function App() {
     const [countries, setCountries] = useState([]);
     const [country, setCountry] = useState("worldwide");
     const [countryData, setCountryData] = useState({});
+    const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
         const baseUrl = "https://disease.sh/v3/covid-19/all";
@@ -28,6 +31,8 @@ function App() {
                         flag: country.countryInfo.flag,
                     }));
                     setCountries(countries);
+                    const sortedData = sortData(data);
+                    setTableData(sortedData);
                 });
         };
         getCountriesData();
@@ -107,8 +112,10 @@ function App() {
             <Card className="app__right">
                 {/* Table */}
                 <h1>New cases by country</h1>
+                <Table allData={tableData} />
                 {/* Graph */}
                 <h1>New cases graph</h1>
+                {/* <LineGraph /> */}
             </Card>
         </div>
     );
