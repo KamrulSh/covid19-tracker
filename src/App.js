@@ -1,5 +1,5 @@
 import { Card, FormControl, MenuItem, Select } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
 import LineGraph from "./LineGraph";
@@ -14,10 +14,11 @@ function App() {
     const [countryData, setCountryData] = useState({});
     const [tableData, setTableData] = useState([]);
     const [mapCenter, setMapCenter] = useState({
-        lat: 35.46067,
-        lng: 17.28783,
+        lat: 0,
+        lng: 0,
     });
     const [mapZoom, setMapZoom] = useState(2);
+    const [mapCountries, setMapCountries] = useState([]);
 
     useEffect(() => {
         const baseUrl = "https://disease.sh/v3/covid-19/all";
@@ -38,6 +39,7 @@ function App() {
                         flag: country.countryInfo.flag,
                     }));
                     setCountries(countries);
+                    setMapCountries(data);
                     // display sorted data in table
                     const sortedData = sortData(data);
                     setTableData(sortedData);
@@ -63,7 +65,7 @@ function App() {
                     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
                     setMapZoom(5);
                 } else {
-                    setMapCenter([35, 17]);
+                    setMapCenter([0, 0]);
                     setMapZoom(2);
                 }
             });
@@ -74,7 +76,6 @@ function App() {
         <div className="app">
             <div className="app__left">
                 <div className="app__header">
-                    {/* Header + dropdown */}
                     <h1>COVID 19 Tracker</h1>
                     <FormControl className="app__dropdown">
                         <Select
@@ -103,7 +104,6 @@ function App() {
                     </FormControl>
                 </div>
 
-                {/* InfoBox */}
                 <div className="app__stats">
                     <InfoBox
                         title="Corona Cases"
@@ -122,14 +122,16 @@ function App() {
                     />
                 </div>
 
-                {/* Map */}
-                <Map center={mapCenter} zoom={mapZoom} />
+                <Map
+                    countries={mapCountries}
+                    center={mapCenter}
+                    zoom={mapZoom}
+                />
             </div>
             <Card className="app__right">
-                {/* Table */}
                 <h2>Country wise report</h2>
                 <Table allData={tableData} />
-                {/* Graph */}
+
                 <h2>New cases by last 120 days</h2>
                 <LineGraph />
             </Card>
