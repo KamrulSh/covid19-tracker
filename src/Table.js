@@ -1,6 +1,7 @@
 import React from "react";
 import "./Table.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { prettyTableStat } from "./util";
 
 function Table({ allData }) {
     //console.log("table", allData);
@@ -27,10 +28,10 @@ function Table({ allData }) {
                             </td>
                             <td>{country}</td>
                             <td>
-                                <strong>{cases}</strong>
+                                <strong>{prettyTableStat(cases)}</strong>
                             </td>
-                            <td>{recovered}</td>
-                            <td>{deaths}</td>
+                            <td>{prettyTableStat(recovered)}</td>
+                            <td>{prettyTableStat(deaths)}</td>
                         </tr>
                     )
                 )}

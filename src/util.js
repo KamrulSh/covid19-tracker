@@ -28,6 +28,12 @@ export const sortData = (data) => {
     return allData.sort((a, b) => b.cases - a.cases);
 };
 
+export const prettyPrintStat = (stat) =>
+    stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+
+export const prettyTableStat = (stat) =>
+    stat ? `${numeral(stat).format("0,0")}` : "0";
+
 export const showDataOnMap = (allData, caseType = "deaths") =>
     allData.map((country) => (
         <Circle
