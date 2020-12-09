@@ -58,8 +58,10 @@ function App() {
                 setCountry(countryCode);
                 setCountryData(data);
                 console.log("G", data);
-                setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-                setMapZoom(4);
+                if (countryCode !== "worldwide") {
+                    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+                    setMapZoom(5);
+                }
             });
     };
     //console.log(country, countryData);
@@ -121,7 +123,7 @@ function App() {
             </div>
             <Card className="app__right">
                 {/* Table */}
-                <h2>Total cases by country</h2>
+                <h2>Country wise report</h2>
                 <Table allData={tableData} />
                 {/* Graph */}
                 <h2>New cases by last 120 days</h2>

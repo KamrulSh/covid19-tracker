@@ -76,7 +76,7 @@ function LineGraph() {
             await fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("raw data", data);
+                    //console.log("raw data", data);
                     const chartData = buildChartData(data, "cases");
                     setData(chartData);
                 });
@@ -84,7 +84,7 @@ function LineGraph() {
         fetchData();
     }, []);
 
-    console.log("data", data);
+    //console.log("data", data);
 
     return (
         <div className="lineGraph">

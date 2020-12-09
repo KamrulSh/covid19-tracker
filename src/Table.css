@@ -1,8 +1,7 @@
 .table {
     margin-top: 20px;
     overflow: scroll;
-    height: 400px;
-    color: dimgray;
+    height: 500px;
     overflow-x: hidden;
 }
 
@@ -11,10 +10,11 @@
 }
 
 .table tr {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.table td {
+.table tr {
     padding: 0.5rem;
 }
