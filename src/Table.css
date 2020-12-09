@@ -1,4 +1,4 @@
-.table {
+.tableData {
     margin-top: 20px;
     overflow: scroll;
     height: 500px;
@@ -9,12 +9,7 @@
     background-color: gainsboro;
 }
 
-.table tr {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.table tr {
-    padding: 0.5rem;
+.table__countryImage {
+    height: 20px;
+    width: 30px;
 }

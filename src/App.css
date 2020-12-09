@@ -23,6 +23,7 @@ body {
     flex: 0.9;
     min-width: 500px;
     padding: 10px;
+    flex: 0.9;
 }
 
 .app__right {
@@ -48,8 +49,8 @@ body {
     }
 }
 
-.country__image {
-    width: 25px;
-    height: 16px;
+.app__dropdown__countryImage {
+    width: 50px;
+    height: 20px;
     padding-right: 20px;
 }

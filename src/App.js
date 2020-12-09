@@ -38,6 +38,7 @@ function App() {
                         flag: country.countryInfo.flag,
                     }));
                     setCountries(countries);
+                    // display sorted data in table
                     const sortedData = sortData(data);
                     setTableData(sortedData);
                 });
@@ -61,6 +62,9 @@ function App() {
                 if (countryCode !== "worldwide") {
                     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
                     setMapZoom(5);
+                } else {
+                    setMapCenter([35, 17]);
+                    setMapZoom(2);
                 }
             });
     };
@@ -87,7 +91,7 @@ function App() {
                                     value={country.value}
                                 >
                                     <img
-                                        className="country__image"
+                                        className="app__dropdown__countryImage"
                                         src={country.flag}
                                         alt=""
                                         srcset=""
