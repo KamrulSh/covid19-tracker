@@ -150,7 +150,7 @@ function App() {
                 <Table allData={tableData} />
 
                 <h2>Worldwide {casesType} by last 120 days</h2>
-                <LineGraph casesType={casesType} />
+                <LineGraph className="app__graph" casesType={casesType} />
             </Card>
         </div>
     );

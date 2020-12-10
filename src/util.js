@@ -34,7 +34,7 @@ export const prettyPrintStat = (stat) =>
 export const prettyTableStat = (stat) =>
     stat ? `${numeral(stat).format("0,0")}` : "0";
 
-export const showDataOnMap = (allData, caseType = "deaths") =>
+export const showDataOnMap = (allData, caseType) =>
     allData.map((country) => (
         <Circle
             center={[country.countryInfo.lat, country.countryInfo.long]}
