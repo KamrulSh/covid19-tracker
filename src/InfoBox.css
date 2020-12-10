@@ -1,5 +1,10 @@
 .infoBox {
     flex: 1;
+    cursor: pointer;
+}
+
+.infoBox:hover {
+    background-color: whitesmoke;
 }
 
 .infoBox:not(:last-child) {
@@ -19,4 +24,24 @@
     font-size: 1.1rem !important;
     font-weight: 700 !important;
     margin-bottom: 10px;
+}
+
+.infobox--selected {
+    border-top: 10px solid red;
+}
+
+.infobox--green {
+    border-color: greenyellow;
+}
+
+.infobox--orange {
+    border-color: orangered;
+}
+
+.infobox--text--green {
+    color: greenyellow !important;
+}
+
+.infobox--text--orange {
+    color: orangered !important;
 }
