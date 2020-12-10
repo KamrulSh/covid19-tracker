@@ -47,10 +47,10 @@ const options = {
     },
 };
 
-function LineGraph() {
+function LineGraph({ casesType }) {
     const [data, setData] = useState({});
 
-    const buildChartData = (allDate, casesType = "cases") => {
+    const buildChartData = (allDate, casesType) => {
         let chartData = [];
         let lastDataPoint;
         for (let date in allDate.cases) {
@@ -77,12 +77,12 @@ function LineGraph() {
                 .then((response) => response.json())
                 .then((data) => {
                     //console.log("raw data", data);
-                    const chartData = buildChartData(data, "cases");
+                    const chartData = buildChartData(data, casesType);
                     setData(chartData);
                 });
         };
         fetchData();
-    }, []);
+    }, [casesType]);
 
     //console.log("data", data);
 
