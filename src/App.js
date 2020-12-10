@@ -61,23 +61,31 @@ function App() {
             .then((data) => {
                 setCountry(countryCode);
                 setCountryData(data);
-                console.log("G", data);
-                if (countryCode !== "worldwide") {
-                    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-                    setMapZoom(5);
-                } else {
+                //console.log("G", countryCode, data);
+                if (countryCode === "worldwide") {
                     setMapCenter([0, 0]);
                     setMapZoom(2);
+                } else {
+                    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+                    setMapZoom(5);
                 }
             });
     };
     //console.log(country, countryData);
+    //console.log("App map center1", mapCenter, mapZoom);
 
     return (
         <div className="app">
             <div className="app__left">
                 <div className="app__header">
-                    <h1>COVID 19 Tracker</h1>
+                    <h1>
+                        <img
+                            className="app__headerImg"
+                            src="https://cdn.pixabay.com/photo/2020/04/29/08/24/coronavirus-5107804_1280.png"
+                            alt=""
+                        />
+                        COVID-19 Tracker
+                    </h1>
                     <FormControl className="app__dropdown">
                         <Select
                             variant="outlined"
@@ -104,7 +112,6 @@ function App() {
                         </Select>
                     </FormControl>
                 </div>
-
                 <div className="app__stats">
                     <InfoBox
                         active={casesType === "cases"}
