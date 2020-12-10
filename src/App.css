@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-evenly;
     padding: 10px;
+    width: 100%;
 }
 
 .app__header {
@@ -28,7 +29,6 @@
 }
 
 .app__left {
-    min-width: 450px;
     padding: 10px;
     flex: 0.9;
 }
@@ -53,6 +53,16 @@
     }
     .app__right {
         margin-top: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .app__stats {
+        flex-direction: column;
+    }
+
+    .infoBox:not(:last-child) {
+        margin-bottom: 15px;
     }
 }
 

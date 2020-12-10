@@ -2,7 +2,6 @@
     margin-top: 20px;
     overflow: scroll;
     height: 500px;
-    overflow-x: hidden;
 }
 
 .table tr:nth-of-type(odd) {

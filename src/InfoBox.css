@@ -7,8 +7,10 @@
     background-color: whitesmoke;
 }
 
-.infoBox:not(:last-child) {
-    margin-right: 15px;
+@media (min-width: 401px) {
+    .infoBox:not(:last-child) {
+        margin-right: 15px;
+    }
 }
 
 .infoBox__cases {
