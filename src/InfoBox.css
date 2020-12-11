@@ -29,11 +29,11 @@
 }
 
 .infobox--selected {
-    border-top: 10px solid red;
+    border-top: 10px solid crimson;
 }
 
 .infobox--green {
-    border-color: greenyellow;
+    border-color: #90f000;
 }
 
 .infobox--orange {
@@ -41,7 +41,7 @@
 }
 
 .infobox--text--green {
-    color: greenyellow !important;
+    color: #90f000 !important;
 }
 
 .infobox--text--orange {

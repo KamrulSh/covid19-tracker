@@ -47,8 +47,24 @@ const options = {
     },
 };
 
+const caseTypeColors = {
+    cases: {
+        hex: "#CC1034",
+        half_op: "rgba(204, 16, 52, 0.5)",
+    },
+    recovered: {
+        hex: "#7dd71d",
+        half_op: "rgba(125, 215, 29, 0.5)",
+    },
+    deaths: {
+        hex: "#fb4443",
+        half_op: "rgba(251, 68, 67, 0.5)",
+    },
+};
+
 function LineGraph({ casesType, ...props }) {
     const [data, setData] = useState({});
+    //const [casesType, setCasesType] = useState("cases");
 
     const buildChartData = (allDate, casesType) => {
         let chartData = [];
@@ -79,6 +95,7 @@ function LineGraph({ casesType, ...props }) {
                     //console.log("raw data", data);
                     const chartData = buildChartData(data, casesType);
                     setData(chartData);
+                    //setCasesType(casesType);
                 });
         };
         fetchData();
@@ -94,8 +111,9 @@ function LineGraph({ casesType, ...props }) {
                     data={{
                         datasets: [
                             {
-                                backgroundColor: "rgba(204, 16, 52, .5)", //
-                                borderColor: "#cc1034", //
+                                backgroundColor:
+                                    caseTypeColors[casesType].half_op, //"rgba(204, 16, 52, .5)"
+                                borderColor: caseTypeColors[casesType].hex, //
                                 data: data,
                             },
                         ],
