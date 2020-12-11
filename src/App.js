@@ -63,11 +63,11 @@ function App() {
                 setCountryData(data);
                 //console.log("G", countryCode, data);
                 if (countryCode === "worldwide") {
-                    setMapCenter([0, 0]);
                     setMapZoom(2);
+                    setMapCenter([0, 0]);
                 } else {
-                    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
                     setMapZoom(5);
+                    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
                 }
             });
     };

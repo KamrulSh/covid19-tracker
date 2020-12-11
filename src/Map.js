@@ -5,7 +5,7 @@ import { showDataOnMap } from "./util";
 import FullscreenControl from "react-leaflet-fullscreen";
 
 function Map({ countries, casesType, center, zoom }) {
-    console.log("Map=>", center, zoom);
+    //console.log("Map=>", center, zoom);
     return (
         <div className="map">
             <LeafletMap center={center} zoom={zoom}>
