@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 1. leaflet
 1. react-leaflet
 1. react-leaflet-fullscreen
-1. react-table
+1. material-ui/data-grid
 1. Numeral
 
 ## Some useful articals

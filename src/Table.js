@@ -1,41 +1,50 @@
 import React from "react";
 import "./Table.css";
+import { DataGrid } from "@material-ui/data-grid";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { prettyTableStat } from "./util";
 
-function Table({ allData }) {
-    //console.log("table", allData);
+function Table({ countries }) {
+    //console.log("countries0", countries);
+    const columns = [
+        {
+            headerName: "#",
+            field: "id",
+            width: 80,
+        },
+        {
+            headerName: "Flag",
+            field: "flag",
+            sortable: false,
+        },
+        {
+            headerName: "Country",
+            field: "name",
+            width: 130,
+        },
+        {
+            headerName: "Cases",
+            field: "cases",
+            width: 130,
+        },
+        {
+            headerName: "Recovered",
+            field: "recovered",
+            width: 130,
+        },
+        {
+            headerName: "Deaths",
+            field: "deaths",
+            width: 130,
+        },
+    ];
+
     return (
-        <div className="tableData">
-            <table className="table">
-                <tr>
-                    <th>Flag</th>
-                    <th>Country</th>
-                    <th>Total cases</th>
-                    <th>Recovered</th>
-                    <th>Deaths</th>
-                </tr>
-                {allData.map(
-                    ({ country, cases, recovered, deaths, countryInfo }) => (
-                        <tr>
-                            <td>
-                                <img
-                                    className="table__countryImage"
-                                    src={countryInfo.flag}
-                                    alt=""
-                                    srcset=""
-                                />
-                            </td>
-                            <td>{country}</td>
-                            <td>
-                                <strong>{prettyTableStat(cases)}</strong>
-                            </td>
-                            <td>{prettyTableStat(recovered)}</td>
-                            <td>{prettyTableStat(deaths)}</td>
-                        </tr>
-                    )
-                )}
-            </table>
+        <div style={{ height: 500, width: "100%" }}>
+            <DataGrid
+                className="tableData"
+                columns={columns}
+                rows={countries}
+            />
         </div>
     );
 }

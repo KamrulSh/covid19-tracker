@@ -1,11 +1,6 @@
 .tableData {
-    overflow: scroll;
     height: 500px;
     margin-top: 10px;
-}
-
-.table tr:nth-of-type(odd) {
-    background-color: gainsboro;
 }
 
 .table__countryImage {

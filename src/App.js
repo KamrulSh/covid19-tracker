@@ -5,14 +5,14 @@ import InfoBox from "./InfoBox";
 import LineGraph from "./LineGraph";
 import Map from "./Map";
 import Table from "./Table";
-import { prettyPrintStat, sortData } from "./util";
+import { prettyPrintStat } from "./util";
 import "leaflet/dist/leaflet.css";
 
 function App() {
     const [countries, setCountries] = useState([]);
     const [country, setCountry] = useState("worldwide");
     const [countryData, setCountryData] = useState({});
-    const [tableData, setTableData] = useState([]);
+    //const [tableData, setTableData] = useState([]);
     const [mapCenter, setMapCenter] = useState({
         lat: 0,
         lng: 0,
@@ -34,16 +34,20 @@ function App() {
             await fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    const countries = data.map((country) => ({
+                    const countries = data.map((country, index) => ({
+                        id: index + 1,
                         name: country.country,
                         value: country.countryInfo.iso3,
                         flag: country.countryInfo.flag,
+                        cases: country.cases,
+                        recovered: country.recovered,
+                        deaths: country.deaths,
                     }));
                     setCountries(countries);
                     setMapCountries(data);
                     // display sorted data in table
-                    const sortedData = sortData(data);
-                    setTableData(sortedData);
+                    // const sortedData = sortData(data);
+                    // setTableData(sortedData);
                 });
         };
         getCountriesData();
@@ -147,9 +151,11 @@ function App() {
             </div>
             <Card className="app__right">
                 <h2>Country wise report</h2>
-                <Table allData={tableData} />
+                <Table countries={countries} />
 
-                <h2 className="app__rightGraph">Worldwide {casesType} by last 120 days</h2>
+                <h2 className="app__rightGraph">
+                    Worldwide {casesType} by last 120 days
+                </h2>
                 <LineGraph className="app__graph" casesType={casesType} />
             </Card>
         </div>
